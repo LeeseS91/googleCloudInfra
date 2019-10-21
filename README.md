@@ -3,7 +3,7 @@ Python Program to pipe data from Cloud Storage to Postgres
 
 Setup:
 1. Add in DB credentials, download directory and directory for answers to be exported to
-2. Authentication JSON for service account to bucket needs adding and directory pointing to it.
+2. Setup and download authentication JSON for service account to bucket and point client to path.
 3. Set Boolean on whether it is first run and main table needs creating
 4. Customise variables for names of SQL table etc
 
