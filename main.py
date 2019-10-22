@@ -96,6 +96,7 @@ def prepareCsvFilesForUpload(files):
             print('Processed file: {}...'.format(editFileName))
         except Exception as e:
             print(e)
+    return duplicatesCount
 
 def createTable(tableName, cleanTable, dbName, user, pw, host, port):
     conn = psycopg2.connect(dbname=dbName, user=user, password=pw, host=host, port=port)
