@@ -83,20 +83,17 @@ def unZip(fileNames, downloadDirectory):
 # This step converts time to valid timestamp and Allowed me to reduce number of rows analysed for testing
 def prepareCsvFilesForUpload(files):
     editFileList = list()
-    duplicatesCount = list()
     for file in files:
         try :
             df = pd.read_csv(file, encoding='utf8')
-            numDuplicates = initLength - postLength # calculate the number of duplicate rows removed
             df['Time'] = df['Time'].apply(lambda x: dt.datetime.strptime(x, '%Y-%m-%d-%H:%M:%S')) # convert time to timestamp
             editFileName = file[:-4] + '_edit.csv'
             df.iloc[:].to_csv(editFileName, index=False, encoding='utf8') # write the edited dataframe to csv
             editFileList.append(editFileName)
-            duplicatesCount.append(numDuplicates)
             print('Processed file: {}...'.format(editFileName))
         except Exception as e:
             print(e)
-    return duplicatesCount
+    return editFileList
 
 def createTable(tableName, cleanTable, dbName, user, pw, host, port):
     conn = psycopg2.connect(dbname=dbName, user=user, password=pw, host=host, port=port)
